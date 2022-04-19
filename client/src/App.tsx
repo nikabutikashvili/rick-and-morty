@@ -1,6 +1,8 @@
 import "./App.css";
+import store from "./store/index";
+import { Provider } from "react-redux";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -10,4 +12,12 @@ const App = () => {
   );
 };
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+export default AppWrapper;
