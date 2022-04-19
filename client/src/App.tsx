@@ -12,8 +12,9 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {routes.map((route: RouteType) => (
+        {routes.map((route: RouteType, index) => (
           <Route
+            key={index}
             path={route.path}
             element={
               route.isPrivate ? (
