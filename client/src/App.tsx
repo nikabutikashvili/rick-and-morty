@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import store from "./store/index";
@@ -36,7 +36,9 @@ const App: React.FC = () => {
 const AppWrapper: React.FC = () => {
   return (
     <Provider store={store}>
-      <App />
+      <div className="app">
+        <App />
+      </div>
     </Provider>
   );
 };
