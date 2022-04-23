@@ -1,5 +1,6 @@
 import Home from "../../pages/Home";
 import Login from "../../pages/Login";
+import Register from "../../pages/Register";
 
 export interface Route {
   path: string;
@@ -16,6 +17,11 @@ const routes: Route[] = [
   {
     path: "/login",
     element: Login,
+    isPrivate: false,
+  },
+  {
+    path: "/register",
+    element: Register,
     isPrivate: false,
   },
 ];
