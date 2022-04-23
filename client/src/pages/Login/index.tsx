@@ -57,7 +57,7 @@ const Login: React.FC = () => {
         <LoaderWithApi
           load={loading}
           render={() => (
-            <>
+            <div className={styles.innerWrapper}>
               <h1>Please login in order to see characters</h1>
               <h3>{errorMessage}</h3>
               <form className={styles.form}>
@@ -81,10 +81,14 @@ const Login: React.FC = () => {
                   Login
                 </button>
               </form>
-              <button className="button-1" type="button">
+              <button
+                className="button-1"
+                type="button"
+                onClick={() => navigate("/register")}
+              >
                 Register
               </button>
-            </>
+            </div>
           )}
         />
       </div>
