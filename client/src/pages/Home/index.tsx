@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CharacterCard from "../components/CharacterCard";
+import CharacterCard from "../../components/CharacterCard";
 import {
   getCharacters,
   RickAndMortySliceState,
   Character,
   getCharacter,
-} from "../store/rickAndMorty";
+} from "../../store/rickAndMorty";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();

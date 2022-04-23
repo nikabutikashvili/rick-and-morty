@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/LoaderWithApi.module.css";
+import styles from "./LoaderWithApi.module.css";
 
 interface Props {
   load: boolean;

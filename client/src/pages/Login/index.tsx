@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/images/logo.png";
-import { login } from "../store/auth";
-import styles from "../styles/Login.module.css";
-import LoaderWithApi from "../components/LoaderWithApi";
+import Logo from "../../assets/images/logo.png";
+import { login } from "../../store/auth";
+import styles from "./Login.module.css";
+import LoaderWithApi from "../../components/LoaderWithApi";
 
 export interface User {
   email: string;
