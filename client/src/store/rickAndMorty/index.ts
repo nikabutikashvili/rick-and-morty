@@ -1,28 +1,56 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { api } from "../../configs/api";
 
-interface Character {
+export interface Character {
+  id: number;
   name: string;
+  status: string;
+  species: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  locations: {
+    name: string;
+    url: string;
+  };
+  image: string;
 }
 
-interface RickAndMortySliceState {
+export interface RickAndMortySliceState {
   characters: Character[];
+  character: Character | null;
   status: string | null;
 }
 const initialState: RickAndMortySliceState = {
   characters: [],
+  character: null,
   status: null,
 };
 
 export const getCharacters = createAsyncThunk(
   "rickAndMorty/characters",
   async () => {
-    const response = await axios.get(
-      "https://rickandmortyapi.com/api/character"
-    );
+    const response = await api.get("rick-and-morty/characters");
     const { data } = response;
 
-    return data.results as Character[];
+    return data as Character[];
+  }
+);
+
+export const getCharacter = createAsyncThunk(
+  "rickAndMorty/character",
+  async (id: number) => {
+    const response = await api.get(
+      `https://rickandmortyapi.com/api/character/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    const { data } = response;
+    return data as Character;
   }
 );
 
@@ -42,6 +70,19 @@ export const RickAndMortSlice = createSlice({
       state.status = "success";
     },
     [getCharacters.rejected as any]: (state: RickAndMortySliceState) => {
+      state.status = "failed";
+    },
+    [getCharacter.pending as any]: (state: RickAndMortySliceState) => {
+      state.status = "loading";
+    },
+    [getCharacter.fulfilled as any]: (
+      state: RickAndMortySliceState,
+      action: PayloadAction<Character>
+    ) => {
+      state.character = action.payload;
+      state.status = "success";
+    },
+    [getCharacter.rejected as any]: (state: RickAndMortySliceState) => {
       state.status = "failed";
     },
   },
