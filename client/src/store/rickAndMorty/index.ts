@@ -57,7 +57,11 @@ export const getCharacter = createAsyncThunk(
 export const RickAndMortSlice = createSlice({
   name: "rickAndMorty",
   initialState,
-  reducers: {},
+  reducers: {
+    clearCharacters: (state: RickAndMortySliceState) => {
+      state.characters = [];
+    },
+  },
   extraReducers: {
     [getCharacters.pending as any]: (state: RickAndMortySliceState) => {
       state.status = "loading";
@@ -88,6 +92,6 @@ export const RickAndMortSlice = createSlice({
   },
 });
 
-// export const {} = RickAndMortSlice.actions;
+export const { clearCharacters } = RickAndMortSlice.actions;
 
 export default RickAndMortSlice.reducer;

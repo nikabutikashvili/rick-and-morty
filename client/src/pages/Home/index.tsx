@@ -6,7 +6,9 @@ import {
   RickAndMortySliceState,
   Character,
   getCharacter,
+  clearCharacters,
 } from "../../store/rickAndMorty";
+import styles from "./Home.module.css";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const Home: React.FC = () => {
   );
   useEffect(() => {
     dispatch(getCharacters() as any);
+    return () => dispatch(clearCharacters() as any);
   }, [dispatch]);
 
   const handleCardClick = (id: number) => {
@@ -24,7 +27,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <h1 className="main-title">The Rick And Morty Characters</h1>
-      <div className="cards">
+      <div className={styles.innerWrapper}>
         {rickAndMorty.characters.map((character: Character) => (
           <CharacterCard
             key={character.id}

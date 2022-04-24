@@ -1,4 +1,5 @@
 import { Character } from "../../store/rickAndMorty";
+import styles from "./CharacterCard.module.css";
 
 interface Props {
   character: Character;
@@ -7,8 +8,8 @@ interface Props {
 
 const CharacterCard: React.FC<Props> = ({ character, onClick }) => {
   return (
-    <div className="card" onClick={onClick}>
-      <h2>Name: {character.name}</h2>
+    <div className={styles.card} onClick={onClick}>
+      <h2>{character.name}</h2>
       <img src={character.image} alt={character.name} />
     </div>
   );
