@@ -44,12 +44,12 @@ const Register = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h1>Register</h1>
+      <h1>Register to use the APP</h1>
       <LoaderWithApi
         load={loading}
         render={() => (
           <form className={styles.formWrapper}>
-            <label htmlFor="email">First Name</label>
+            <label htmlFor="email">Enter your first name</label>
             <input
               id="firstName"
               name="firstName"
@@ -58,8 +58,9 @@ const Register = () => {
               onChange={handleChange}
               autoComplete="off"
               autoFocus
+              placeholder="First Name"
             />
-            <label htmlFor="email">Last Name</label>
+            <label htmlFor="email">Enter your last name</label>
             <input
               id="lastName"
               name="lastName"
@@ -67,17 +68,19 @@ const Register = () => {
               value={newUser.lastName}
               onChange={handleChange}
               autoComplete="off"
+              placeholder="Last Name"
             />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Enter your email</label>
             <input
               id="email"
               name="email"
-              type="text"
+              type="email"
               value={newUser.email}
               onChange={handleChange}
               autoComplete="off"
+              placeholder="Email"
             />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Enter your password</label>
             <input
               id="password"
               name="password"
@@ -85,8 +88,19 @@ const Register = () => {
               value={newUser.password}
               onChange={handleChange}
               autoComplete="off"
+              placeholder="Password"
             />
-            <button type="submit" className="button-1" onClick={onSubmit}>
+            <button
+              type="submit"
+              className="button-1"
+              onClick={onSubmit}
+              disabled={
+                !newUser.firstName ||
+                !newUser.lastName ||
+                !newUser.email ||
+                !newUser.password
+              }
+            >
               Register
             </button>
           </form>
