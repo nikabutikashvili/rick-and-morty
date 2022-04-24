@@ -1,4 +1,7 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
+import store from "../../store";
+import { logout } from "../../store/auth";
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 const api = Axios.create({
@@ -32,7 +35,9 @@ api.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
-    console.log(error);
+    if (error?.response?.status === 401) {
+      store.dispatch(logout() as any);
+    }
     return Promise.reject(error);
   }
 );

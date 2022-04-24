@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { api } from "../../configs/api";
-import { Navigate, useNavigate } from "react-router-dom";
 
 interface User {
   email: string | null;
@@ -50,6 +49,7 @@ export const logout = createAsyncThunk(
     await api.post("auth/logout").then(({ data }) => {
       localStorage.setItem("user", JSON.stringify(data.user));
       if (typeof args?.succesCallBack === "function") args.succesCallBack();
+      else window.location.pathname = "/login";
     });
 
     return null;

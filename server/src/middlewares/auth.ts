@@ -11,7 +11,7 @@ interface JwtPayload {
 export const authorization = (req: any, res: Response, next: NextFunction) => {
   const token = req.cookies.access_token;
   if (!token) {
-    return res.sendStatus(403);
+    return res.sendStatus(401);
   }
 
   try {
@@ -19,6 +19,6 @@ export const authorization = (req: any, res: Response, next: NextFunction) => {
     req.userId = userId;
     return next();
   } catch {
-    return res.sendStatus(403);
+    return res.sendStatus(401);
   }
 };
