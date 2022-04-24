@@ -29,7 +29,7 @@ const Home: React.FC = () => {
     <div>
       <h1 className="main-title">The Rick And Morty Characters</h1>
       <div className={styles.innerWrapper}>
-        {rickAndMorty.characters.map((character: Character) => (
+        {rickAndMorty?.characters.map((character: Character) => (
           <CharacterCard
             key={character.id}
             character={character}
