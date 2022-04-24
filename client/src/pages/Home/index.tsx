@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/CharacterCard";
 import {
   getCharacters,
   RickAndMortySliceState,
   Character,
-  getCharacter,
   clearCharacters,
 } from "../../store/rickAndMorty";
 import styles from "./Home.module.css";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const rickAndMorty: RickAndMortySliceState = useSelector(
     (state: any) => state.rickAndMorty
   );
@@ -20,8 +21,8 @@ const Home: React.FC = () => {
     return () => dispatch(clearCharacters() as any);
   }, [dispatch]);
 
-  const handleCardClick = (id: number) => {
-    dispatch(getCharacter(id) as any);
+  const handleCardClick = (id: number | string) => {
+    navigate(`/characters/${id}`);
   };
 
   return (
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
           <CharacterCard
             key={character.id}
             character={character}
-            onClick={() => handleCardClick(character.id)}
+            onClick={handleCardClick}
           />
         ))}
       </div>

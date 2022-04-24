@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { api } from "../../configs/api";
 
 export interface Character {
-  id: number;
+  id: number | string;
   name: string;
   status: string;
   species: string;
@@ -11,7 +11,7 @@ export interface Character {
     name: string;
     url: string;
   };
-  locations: {
+  location: {
     name: string;
     url: string;
   };
@@ -41,13 +41,10 @@ export const getCharacters = createAsyncThunk(
 
 export const getCharacter = createAsyncThunk(
   "rickAndMorty/character",
-  async (id: number) => {
-    const response = await api.get(
-      `https://rickandmortyapi.com/api/character/${id}`,
-      {
-        withCredentials: true,
-      }
-    );
+  async (id: number | string) => {
+    const response = await api.get(`rick-and-morty/characters/${id}`, {
+      withCredentials: true,
+    });
 
     const { data } = response;
     return data as Character;
@@ -60,6 +57,9 @@ export const RickAndMortSlice = createSlice({
   reducers: {
     clearCharacters: (state: RickAndMortySliceState) => {
       state.characters = [];
+    },
+    clearCharacter: (state: RickAndMortySliceState) => {
+      state.character = null;
     },
   },
   extraReducers: {
@@ -92,6 +92,6 @@ export const RickAndMortSlice = createSlice({
   },
 });
 
-export const { clearCharacters } = RickAndMortSlice.actions;
+export const { clearCharacters, clearCharacter } = RickAndMortSlice.actions;
 
 export default RickAndMortSlice.reducer;

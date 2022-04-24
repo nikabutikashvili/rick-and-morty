@@ -1,4 +1,5 @@
 import Home from "../../pages/Home";
+import CharacterDetails from "../../pages/CharacterDetails";
 import Login from "../../pages/Login";
 import Register from "../../pages/Register";
 
@@ -12,6 +13,11 @@ const routes: Route[] = [
   {
     path: "/",
     element: Home,
+    isPrivate: true,
+  },
+  {
+    path: "/characters/:id",
+    element: CharacterDetails,
     isPrivate: true,
   },
   {

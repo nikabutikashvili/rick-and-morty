@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { api } from "../../configs/api";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface User {
   email: string | null;
@@ -42,6 +43,19 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk(
+  "auth/logout",
+  async (args?: { succesCallBack: () => void }) => {
+    localStorage.removeItem("user");
+    await api.post("auth/logout").then(({ data }) => {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      if (typeof args?.succesCallBack === "function") args.succesCallBack();
+    });
+
+    return null;
+  }
+);
+
 export const RickAndMortSlice = createSlice({
   name: "rickAndMorty",
   initialState,
@@ -58,6 +72,16 @@ export const RickAndMortSlice = createSlice({
       state.status = "success";
     },
     [login.rejected as any]: (state: UserSlice) => {
+      state.status = "failed";
+    },
+    [logout.pending as any]: (state: UserSlice) => {
+      state.user = { ...initialState.user };
+      state.status = "loading";
+    },
+    [logout.fulfilled as any]: (state: UserSlice) => {
+      state.status = "success";
+    },
+    [logout.rejected as any]: (state: UserSlice) => {
       state.status = "failed";
     },
   },
