@@ -17,4 +17,13 @@ model User {
   password      String   @db.VarChar(255)
   first_name    String   @db.VarChar(255)
   last_name     String   @db.VarChar(255)
+  favorite      Favorite[]
+}
+
+model Favorite {
+  @@map(name: "favorite")
+  id            Int      @id @default(autoincrement())   
+  character_id  Int  
+  user          User     @relation(fields: [user_id], references: [id])
+  user_id       Int       
 }
