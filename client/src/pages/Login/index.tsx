@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo.png";
 import { login } from "../../store/auth";
 import styles from "./Login.module.css";
 import LoaderWithApi from "../../components/LoaderWithApi";
+import useAuth from "../../hooks/useAuth";
 
 export interface User {
   email: string;
@@ -20,6 +21,13 @@ const Login: React.FC = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { isAuth } = useAuth();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = event.currentTarget;

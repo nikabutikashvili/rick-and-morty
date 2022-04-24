@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoaderWithApi from "../../components/LoaderWithApi";
 import { api } from "../../configs/api";
+import useAuth from "../../hooks/useAuth";
 import styles from "./Register.module.css";
 
 interface NewUser {
@@ -21,7 +22,13 @@ const Register = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { isAuth } = useAuth();
 
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
   const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = event.currentTarget;
     setNewUser({
