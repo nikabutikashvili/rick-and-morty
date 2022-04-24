@@ -16,6 +16,7 @@ export interface Character {
     url: string;
   };
   image: string;
+  isFavorited: boolean;
 }
 
 export interface RickAndMortySliceState {

@@ -8,3 +8,15 @@
 .card h2 {
   font-size: 18px;
 }
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  margin-top: 10px;
+  width: 50px;
+  display: block;
+  cursor: pointer;
+}

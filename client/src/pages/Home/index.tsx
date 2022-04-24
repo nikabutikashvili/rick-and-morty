@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/CharacterCard";
+import { api } from "../../configs/api";
 import {
   getCharacters,
   RickAndMortySliceState,
@@ -25,6 +26,11 @@ const Home: React.FC = () => {
     navigate(`/characters/${id}`);
   };
 
+  const favoriteToggle = async (id: number | string) => {
+    await api.post(`rick-and-morty/characters/${id}/favorite`);
+    dispatch(getCharacters() as any);
+  };
+
   return (
     <div>
       <h1 className="main-title">The Rick And Morty Characters</h1>
@@ -34,6 +40,7 @@ const Home: React.FC = () => {
             key={character.id}
             character={character}
             onClick={handleCardClick}
+            favoriteToggle={favoriteToggle}
           />
         ))}
       </div>
