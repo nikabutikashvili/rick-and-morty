@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CharacterCard from "../../components/CharacterCard";
 import LoaderWithApi from "../../components/LoaderWithApi";
 import { api } from "../../configs/api";
+import { logout } from "../../store/auth";
 import {
   getCharacters,
   RickAndMortySliceState,
@@ -52,8 +53,17 @@ const Home: React.FC = () => {
     dispatch(getCharacters() as any);
   };
 
+  const handleLogout = (): void => {
+    dispatch(logout() as any);
+  };
+
   return (
     <div className={styles.wrapper}>
+      <div>
+        <button className="button-1" onClick={handleLogout}>
+          Log out
+        </button>
+      </div>
       <h1 className="main-title">The Rick And Morty Characters</h1>
       <LoaderWithApi
         load={loading}
