@@ -16,11 +16,17 @@ after that, run the following commands:
   yarn start
 ```
 
+To run the tests:
+```bash
+  yarn test
+```
+
 
 ### Front-end:
 navigate to ```client``` folder. Add ```.env``` file and include the following variable: ```REACT_APP_API_URL``` for the base url where the server is running. (If you're running server locally, it should be ```http://localhost:3000/```)
 And then, run the following commands:
 ```bash
   yarn install
+  npx prisma migrate dev --name init
   yarn start
 ```
