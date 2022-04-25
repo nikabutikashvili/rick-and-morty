@@ -2,7 +2,20 @@
 
 This is the web-application where users can see different characters from Rick And Morty, read the detail about them and favourite them. In order to use the app, please register. 
 
+## Technologies used:
 
+### Front-end:
+- React
+- Redux toolkit
+- TypeScript
+- Jest/Testing library
+
+### Back-end:
+- Node.js
+- TypeScript
+- Express
+- MySQL
+- Prisma (ORM)
 
 ## Deployment
 
