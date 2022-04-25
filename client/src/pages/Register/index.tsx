@@ -51,6 +51,9 @@ const Register = () => {
 
   return (
     <div className={styles.wrapper}>
+      <button className="button-1" onClick={() => navigate("/login")}>
+        Go back to login page
+      </button>
       <h1>Register to use the APP</h1>
       <p className={styles.errorMessage}>{errorMessage}</p>
       <LoaderWithApi
