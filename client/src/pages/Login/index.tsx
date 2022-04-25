@@ -67,7 +67,7 @@ const Login: React.FC = () => {
           render={() => (
             <div className={styles.innerWrapper}>
               <h1>Please login in order to see characters</h1>
-              <h3>{errorMessage}</h3>
+              <h3 className={styles.errorMessage}>{errorMessage}</h3>
               <form className={styles.form}>
                 <label htmlFor="email">Enter your email</label>
                 <input

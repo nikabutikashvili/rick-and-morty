@@ -31,3 +31,7 @@ button {
 input {
   width: 180px;
 }
+
+.errorMessage {
+  color: red;
+}

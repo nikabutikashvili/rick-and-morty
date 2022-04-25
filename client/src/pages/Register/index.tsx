@@ -43,8 +43,8 @@ const Register = () => {
     api
       .post("/auth/sign-up", newUser)
       .then(() => navigate("/login"))
-      .catch(({ message }) => {
-        setErrorMessage(message);
+      .catch(({ response }) => {
+        setErrorMessage(response?.data?.message);
         setLoading(false);
       });
   };
@@ -52,6 +52,7 @@ const Register = () => {
   return (
     <div className={styles.wrapper}>
       <h1>Register to use the APP</h1>
+      <p className={styles.errorMessage}>{errorMessage}</p>
       <LoaderWithApi
         load={loading}
         render={() => (
@@ -66,6 +67,7 @@ const Register = () => {
               autoComplete="off"
               autoFocus
               placeholder="First Name"
+              required
             />
             <label htmlFor="email">Enter your last name</label>
             <input
@@ -76,6 +78,7 @@ const Register = () => {
               onChange={handleChange}
               autoComplete="off"
               placeholder="Last Name"
+              required
             />
             <label htmlFor="email">Enter your email</label>
             <input
@@ -86,6 +89,7 @@ const Register = () => {
               onChange={handleChange}
               autoComplete="off"
               placeholder="Email"
+              required
             />
             <label htmlFor="password">Enter your password</label>
             <input
@@ -96,6 +100,7 @@ const Register = () => {
               onChange={handleChange}
               autoComplete="off"
               placeholder="Password"
+              required
             />
             <button
               type="submit"

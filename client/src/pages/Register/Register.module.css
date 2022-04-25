@@ -12,3 +12,7 @@
 .formWrapper button {
   margin: 10px auto;
 }
+
+.errorMessage {
+  color: red;
+}
