@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const { favorite } = new PrismaClient();
 
-export const toggleFavorite = async (req: any, res: Response) => {
+export const toggleFavorite = async (req: Request, res: Response) => {
   const { id } = req.params;
   if (Number.isNaN(Number(id))) {
     res.status(400).send({

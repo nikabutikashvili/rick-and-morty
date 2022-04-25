@@ -8,7 +8,11 @@ interface JwtPayload {
   userId: number;
 }
 
-export const authorization = (req: any, res: Response, next: NextFunction) => {
+export const authorization = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const token = req.cookies.access_token;
   if (!token) {
     return res.sendStatus(401);

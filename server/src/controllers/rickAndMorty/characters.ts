@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const { favorite } = new PrismaClient();
 
-export const getCharacters = async (req: any, res: Response) => {
+export const getCharacters = async (req: Request, res: Response) => {
   const userId = req.userId;
   const characters = await getCharactersService();
   const favorites = await favorite.findMany({
