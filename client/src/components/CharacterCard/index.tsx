@@ -2,6 +2,7 @@ import { Character } from "../../store/rickAndMorty";
 import styles from "./CharacterCard.module.css";
 import FavouriteIcon from "../../assets/images/favorite.svg";
 import FullFavoriteIcon from "../../assets/images/favorite-full.svg";
+import SampleImage from "../../assets/images/sample.jpeg";
 
 interface Props {
   character: Character;
@@ -14,6 +15,9 @@ const CharacterCard: React.FC<Props> = ({
   onClick,
   favoriteToggle,
 }) => {
+  const handleBrokenImage = (event: any): void => {
+    event.target.src = SampleImage;
+  };
   return (
     <div>
       <div
@@ -25,7 +29,12 @@ const CharacterCard: React.FC<Props> = ({
         }}
       >
         <h2>{character.name}</h2>
-        <img src={character.image} alt={character.name} />
+        <img
+          src={character.image}
+          onError={handleBrokenImage}
+          alt={character.name}
+          className={styles.characterImage}
+        />
       </div>
       <div className={styles.iconWrapper}>
         <img

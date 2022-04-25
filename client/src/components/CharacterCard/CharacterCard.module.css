@@ -9,6 +9,11 @@
   font-size: 18px;
 }
 
+.characterImage {
+  width: 300px;
+  height: 300px;
+}
+
 .iconWrapper {
   display: flex;
   justify-content: center;
